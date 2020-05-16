@@ -16,9 +16,11 @@ const render = () => {
         const editingInput = todo.editing 
             ? `<input type="text" class="edit" value="${todo.title}" />` 
             : '';
+
         return `<li data-id="${todo.id}" class="${liClass}">
                     <div class="view">
-                        <input class="toggle" type="checkbox" ${checked}/><label class="label">${todo.title}</label>
+                        <input class="toggle" type="checkbox" ${checked}/>
+                        <label class="label">${todo.title}</label>
                         <button class="destroy"></button>
                     </div>
                     ${editingInput}
@@ -65,8 +67,3 @@ list.addEventListener('keypress', (event) => {
 
 render();
 store.subscribe(render);
-// console.log(store.getState());
-// store.dispatch(actions.addTodo('afadd'));
-// console.log(store.getState());
-// store.dispatch(actions.deleteTodo(1));
-// console.log(store.getState());
