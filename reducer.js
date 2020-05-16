@@ -1,18 +1,21 @@
 const initialState = [
     {
-      id: 1,
+      id: '1',
       title: "Todo 1",
-      completed: false
+      completed: false,
+      editing: false,
     },
     {
-      id: 2,
+      id: '2',
       title: "Todo 2",
-      completed: true
+      completed: true,
+      editing: false,
     },
     {
-      id: 3,
+      id: '3',
       title: "Todo 3",
-      completed: false
+      completed: false,
+      editing: false,
     }
   ];
 
@@ -42,15 +45,23 @@ const todos = (state = initialState, action) => {
             return state
                 .filter((todo) => todo.id !== action.id);
         case types.EDIT_TODO:
+            console.log({action});
+            
             return state.map((todo) => {
                  return todo.id === action.id 
-                    ?  { ...todo, text: action.title }
+                    ?  { ...todo, title: action.title }
                     : todo;
             });
-        case types.COMPLETE_TODO:
+        case types.TOGGLE_COMPLETE_TODO:
             return state.map((todo) => {
                 return todo.id === action.id 
                     ?  { ...todo, completed: !todo.completed }
+                    : todo;
+            });
+        case types.TOGGLE_EDITING_TODO:
+            return state.map((todo) => {
+                return todo.id === action.id 
+                    ?  { ...todo, editing: !todo.editing }
                     : todo;
             });
         case types.COMPLETE_ALL:
